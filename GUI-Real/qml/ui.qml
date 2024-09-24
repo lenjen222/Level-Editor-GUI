@@ -61,7 +61,7 @@ ApplicationWindow {
         }
     }
 
-    // Optionally, add buttons to save and load the level data
+   
     Button {
         text: "Save Level"
         anchors.bottom: parent.bottom
@@ -77,6 +77,32 @@ ApplicationWindow {
         anchors.right: parent.right
         onClicked: {
             backend.loadFromFile()
+        }
+    }
+    // pop up dialogue for the clear level button
+        Dialog {
+        id: clearDialog
+        title: "Confirm Clear"
+        modal: true
+        standardButtons: Dialog.Ok | Dialog.Cancel
+        visible: false
+
+        contentItem: Column {
+            spacing: 10
+            Text {
+                text: "Are you sure you want to clear the whole level?"
+                wrapMode: Text.WordWrap
+            }
+        }
+
+        onAccepted: {
+            backend.clearLevel()
+            // Refresh the GridView
+            mapCanvas.model = mapCanvas.model
+        }
+
+        onRejected: {
+            // No action needed
         }
     }
 }

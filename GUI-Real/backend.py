@@ -26,6 +26,19 @@ class Backend(QObject):
         self.selectedColor = color
         print(f"Selected color set to: {color}")
 
+    #slot to handle to clear level pop up
+    @pyqtSlot()
+    def clearLevel(self):
+        # Reset grid_data to default color ("white")
+        self.grid_data = [["white" for _ in range(100)] for _ in range(100)]
+        print("Level cleared.")
+
+    @pyqtSlot(int, result=str)
+    def getTileColor(self, index):
+        row = index // 100
+        col = index % 100
+        return self.grid_data[row][col]
+
     # Slot to set the color of a tile based on index
     @pyqtSlot(int)
     def setTileColor(self, index):
