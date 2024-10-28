@@ -1,6 +1,7 @@
 import sys
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtQml import QQmlApplicationEngine
+from PyQt5.QtCore import QObject, pyqtSlot, QUrl
 from backend import Backend
 
 
@@ -15,7 +16,7 @@ if __name__ == "__main__":
     # Expose the backend object
     engine.rootContext().setContextProperty('backend', backend)
     
-    engine.load(QUrl.fromLocalFile('ui.qml'))
+    engine.load(QUrl.fromLocalFile('qml/ui.qml'))
     
     if not engine.rootObjects():
         sys.exit(-1)
