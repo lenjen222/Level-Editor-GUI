@@ -1,12 +1,11 @@
-import QtQuick 2.15
-import QtQuick.Controls 2.15
+import QtQuick 6.7
+import QtQuick.Controls 6.7
 
 ApplicationWindow {
     visible: true
     width: 1024
     height: 768
 
-    // Use the backend's selectedColor property
     property color selectedColor: backend.selectedColor
 
     // Palette for color selection
@@ -29,7 +28,6 @@ ApplicationWindow {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    // Call the backend method to set the selected color
                     backend.setSelectedColor(colorCode)
                 }
             }
@@ -48,20 +46,17 @@ ApplicationWindow {
         delegate: Rectangle {
             width: 20
             height: 20
-            // Bind the color of the tile to the backend grid data (additional work needed here)
             color: "white" // This will be updated when loading grid data
             border.color: "lightgrey"
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    // Call the backend method to set the tile color
-                    backend.setTileColor(index)
+                    backend.setTileSprite(index)
                 }
             }
         }
     }
 
-   
     Button {
         text: "Save Level"
         anchors.bottom: parent.bottom
@@ -79,12 +74,12 @@ ApplicationWindow {
             backend.loadFromFile()
         }
     }
-    // pop up dialogue for the clear level button
-        Dialog {
+
+    Dialog {
         id: clearDialog
         title: "Confirm Clear"
         modal: true
-        standardButtons: Dialog.Ok | Dialog.Cancel
+        standardButtons: Dialog.StandardButton.Ok | Dialog.StandardButton.Cancel
         visible: false
 
         contentItem: Column {
@@ -97,7 +92,6 @@ ApplicationWindow {
 
         onAccepted: {
             backend.clearLevel()
-            // Refresh the GridView
             mapCanvas.model = mapCanvas.model
         }
 

@@ -1,9 +1,9 @@
 import sys
-from PyQt5.QtWidgets import QApplication
-from PyQt5.QtQml import QQmlApplicationEngine
-from PyQt5.QtCore import QObject, pyqtSlot, QUrl
-from backend import Backend
 
+from PyQt6.QtWidgets import QApplication
+from PyQt6.QtQml import QQmlApplicationEngine
+from PyQt6.QtCore import QObject, pyqtSlot, QUrl
+from backend import Backend
 
 if __name__ == "__main__":
 

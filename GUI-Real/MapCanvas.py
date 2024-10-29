@@ -1,7 +1,7 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QGridLayout, QPushButton, QVBoxLayout, QScrollArea
-from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QColor
+from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget, QGridLayout, QPushButton, QVBoxLayout, QScrollArea
+from PyQt6.QtCore import Qt
+from PyQt6.QtGui import QColor
 
 class LevelEditor(QMainWindow):
     def __init__(self):
@@ -9,7 +9,7 @@ class LevelEditor(QMainWindow):
         self.setWindowTitle('Level Editor')
         self.setGeometry(100, 100, 800, 600)
 
-        self.selected_color = QColor(Qt.white)
+        self.selected_color = QColor(Qt.GlobalColor.white)
 
         # Create the central widget and layout
         central_widget = QWidget()
@@ -23,7 +23,7 @@ class LevelEditor(QMainWindow):
         self.create_map_area(main_layout)
 
     def create_palette(self, layout):
-        colors = [Qt.red, Qt.green, Qt.blue, Qt.gray]
+        colors = [Qt.GlobalColor.red, Qt.GlobalColor.green, Qt.GlobalColor.blue, Qt.GlobalColor.gray]
         palette_layout = QGridLayout()
         
         for index, color in enumerate(colors):
@@ -73,4 +73,4 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     editor = LevelEditor()
     editor.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())

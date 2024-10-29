@@ -1,6 +1,5 @@
-from PyQt5.QtCore import QObject, pyqtSlot, pyqtProperty, pyqtSignal # type: ignore
-from PyQt5.QtCore import QUrl # type: ignore
-from PyQt5.QtQml import qmlRegisterType #type: ignore
+from PyQt6.QtCore import QObject, pyqtSlot, pyqtProperty, pyqtSignal
+from PyQt6.QtCore import QUrl
 import json
 #supressing errors never goes wrong...
 class Backend(QObject):
@@ -26,7 +25,6 @@ class Backend(QObject):
         col = index % self.grid_width
         self.grid_data[row][col] = self._selectedSprite
         print(f"Tile at index {index} set to sprite {self._selectedSprite}")
-        # Optionally emit a signal if you want to update individual tiles
 
     @pyqtSlot(int, result=str)
     def getTileImageSource(self, index):
