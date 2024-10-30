@@ -6,7 +6,7 @@ ApplicationWindow {
     width: 1024
     height: 768
 
-    property color selectedColor: backend.selectedColor
+    property color selectedColor: backend.selectedSprite
 
     // Palette for color selection
     GridView {
@@ -28,7 +28,7 @@ ApplicationWindow {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    backend.setSelectedColor(colorCode)
+                    backend.setSelectedSprite(colorCode)
                 }
             }
         }
@@ -79,7 +79,7 @@ ApplicationWindow {
         id: clearDialog
         title: "Confirm Clear"
         modal: true
-        standardButtons: Dialog.StandardButton.Ok | Dialog.StandardButton.Cancel
+        standardButtons: DialogButtonBox.StandardButton.Ok | DialogButtonBox.StandardButton.Cancel
         visible: false
 
         contentItem: Column {
