@@ -1,23 +1,27 @@
-from PyQt6.QtCore import QObject, pyqtSlot, pyqtProperty, pyqtSignal
-from PyQt6.QtCore import QUrl
+from PyQt6.QtCore import QObject, pyqtSignal, pyqtSlot, pyqtProperty
 import json
-#supressing errors never goes wrong...
+
 class Backend(QObject):
-    levelChanged = pyqtSignal()
+    # Add a signal to notify changes in the selectedSprite property
+    selectedSpriteChanged = pyqtSignal()
 
     def __init__(self, grid_width=100, grid_height=100):
         super().__init__()
         self.grid_width = grid_width
         self.grid_height = grid_height
-        # Default selected sprite (e.g., an empty tile image)
         self._selectedSprite = "assets/empty.png"
-        # Initialize grid data with the default sprite
         self.grid_data = [[self._selectedSprite for _ in range(self.grid_width)] for _ in range(self.grid_height)]
 
     @pyqtSlot(str)
     def setSelectedSprite(self, imageSource):
-        self._selectedSprite = imageSource
+        if self._selectedSprite != imageSource:
+            self._selectedSprite = imageSource
+            self.selectedSpriteChanged.emit()  # Emit the change notification signal
         print(f"Selected sprite set to: {imageSource}")
+
+    @pyqtProperty(str, notify=selectedSpriteChanged)  # Mark this property as NOTIFYable
+    def selectedSprite(self):
+        return self._selectedSprite
 
     @pyqtSlot(int)
     def setTileSprite(self, index):
@@ -36,7 +40,7 @@ class Backend(QObject):
     def clearLevel(self):
         self.grid_data = [[self._selectedSprite for _ in range(self.grid_width)] for _ in range(self.grid_height)]
         print("Level cleared.")
-        self.levelChanged.emit()
+        self.selectedSpriteChanged.emit()
 
     @pyqtSlot()
     def saveToFile(self):
@@ -50,12 +54,8 @@ class Backend(QObject):
             with open('level_data.json', 'r') as f:
                 self.grid_data = json.load(f)
             print("Level data loaded.")
-            self.levelChanged.emit()
+            self.selectedSpriteChanged.emit()
         except FileNotFoundError:
             print("No saved level data found.")
         except json.JSONDecodeError:
             print("Error decoding level data.")
-
-    @pyqtProperty(str)
-    def selectedSprite(self):
-        return self._selectedSprite

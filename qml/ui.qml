@@ -79,6 +79,7 @@ ApplicationWindow {
         id: clearDialog
         title: "Confirm Clear"
         modal: true
+        width: 300  // Set a fixed width to avoid implicitWidth binding loops
         standardButtons: DialogButtonBox.StandardButton.Ok | DialogButtonBox.StandardButton.Cancel
         visible: false
 
