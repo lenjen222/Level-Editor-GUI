@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "Level-Editor-GUI",
+			"path": ".."
+		},
+		{
+			"name": "GUIPrototype",
+			"path": "../../../GUIPrototype"
+		}
+	],
+	"settings": {}
+}

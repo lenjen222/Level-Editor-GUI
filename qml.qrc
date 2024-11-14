@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/">
+        <!-- Root Level QML Files -->
+        <file>MainEntry.qml</file>
+
+        <!-- GUIPrototypeContent QML Files -->
+        <file>GUIPrototypeContent/App.qml</file>
+        <file>GUIPrototypeContent/Screen01.ui.qml</file>
+
+        <!-- GUIPrototype QML Files -->
+        <file>GUIPrototype/GUIPrototype/Constants.qml</file>
+        <file>GUIPrototype/GUIPrototype/DirectoryFontLoader.qml</file>
+        <file>GUIPrototype/GUIPrototype/EventListModel.qml</file>
+        <file>GUIPrototype/GUIPrototype/EventListSimulator.qml</file>
+    </qresource>
+</RCC>

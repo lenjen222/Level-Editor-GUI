@@ -1,0 +1,14 @@
+
+<RCC>
+<qresource>
+<file>GUIPrototype.qmlproject</file>
+<file>GUIPrototype/Constants.qml</file>
+<file>GUIPrototype/DirectoryFontLoader.qml</file>
+<file>GUIPrototype/EventListModel.qml</file>
+<file>GUIPrototype/EventListSimulator.qml</file>
+<file>GUIPrototype/qmldir</file>
+<file>GUIPrototypeContent/App.qml</file>
+<file>GUIPrototypeContent/Screen01.ui.qml</file>
+<file>qtquickcontrols2.conf</file>
+</qresource>
+</RCC>
