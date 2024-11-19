@@ -9,11 +9,9 @@ Window {
     height: mainScreen.height
 
     visible: true
-    title: "UntitledProject"
+    title: "Level Editor"
 
     Screen01 {
         id: mainScreen
     }
-
 }
-

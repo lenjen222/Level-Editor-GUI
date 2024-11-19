@@ -13,6 +13,11 @@ Rectangle {
     property color selectedColor: "white"
     property int selectedTileIndex: -1
 
+    // need these for App.qml interface
+    property alias savingbutton: savingbutton
+    property alias loadingbutton: loadingbutton
+    property alias clearbutton: clearbutton
+
     // Level Name and Metadata Fields
     Text {
         id: label
@@ -106,7 +111,6 @@ Rectangle {
                         name: "Block Solid 32"
                         imageSource: "assets/block_solid_32.png"
                     }
-                    // Add remaining items as needed...
                 }
 
                 delegate: Rectangle {
@@ -140,7 +144,7 @@ Rectangle {
                 height: 776
                 cellWidth: 32
                 cellHeight: 32
-                model: 100 * 100 // Example grid size, 100x100 tiles
+                model: 100 * 100
 
                 delegate: Rectangle {
                     width: 32

@@ -5,22 +5,20 @@ from PyQt6.QtCore import QUrl
 from backend import Backend
 
 if __name__ == "__main__":
-    # Create the application
+    # Create application
     app = QApplication(sys.argv)
-
-    # Create the QML application engine
     engine = QQmlApplicationEngine()
 
-    # Create an instance of the Backend class and expose it to QML
+    # Create backend and expose to QML
     backend = Backend()
     engine.rootContext().setContextProperty("backend", backend)
 
-    # Load the real QML file
-    engine.load(QUrl.fromLocalFile('C:/Users/Len/Documents/GitHub/Level-Editor-GUI/MainEntry.qml'))
+    # Load the QML file
+    engine.load(QUrl("UntitledProjectContent/App.qml"))
 
-    # Check if the QML file loaded successfully
+    # Check if QML loaded correctly
     if not engine.rootObjects():
         sys.exit(-1)
 
-    # Execute the application
+    # Execute application
     sys.exit(app.exec())
