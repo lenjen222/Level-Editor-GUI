@@ -7,7 +7,7 @@ import Qt.labs.folderlistmodel 6.7
 QtObject {
     id: loader
 
-    property url fontDirectory: Qt.resolvedUrl("../../GUIPrototypeContent/" + relativeFontDirectory)
+    property url fontDirectory: Qt.resolvedUrl("../../UntitledProjectContent/" + relativeFontDirectory)
     property string relativeFontDirectory: "fonts"
 
     function loadFont(url) {

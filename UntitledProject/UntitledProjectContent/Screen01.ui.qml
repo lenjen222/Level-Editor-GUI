@@ -1,6 +1,6 @@
 import QtQuick 6.7
 import QtQuick.Controls 6.7
-import GUIPrototype
+import untitledproject
 
 Rectangle {
     id: rectangle
@@ -37,11 +37,46 @@ Rectangle {
             color: "#fff6f3"
 
             // Control Buttons
-            Button { id: savingbutton; text: qsTr("Save"); x: 0; y: 0; width: 82; height: 33; onClicked: backend.saveToFile() }
-            Button { id: loadingbutton; text: qsTr("Load"); x: 88; y: 0; width: 84; height: 33; onClicked: backend.loadFromFile() }
-            Button { id: undobutton; text: qsTr("Undo"); x: 178; y: 0; width: 87; height: 33 }
-            Button { id: redobutton; text: qsTr("Redo"); x: 271; y: 0; width: 82; height: 33 }
-            Button { id: clearbutton; text: qsTr("Clear"); x: 359; y: 0; width: 80; height: 33; onClicked: backend.clearLevel() }
+            Button {
+                id: savingbutton
+                text: qsTr("Save")
+                x: 0
+                y: 0
+                width: 82
+                height: 33
+            }
+            Button {
+                id: loadingbutton
+                text: qsTr("Load")
+                x: 88
+                y: 0
+                width: 84
+                height: 33
+            }
+            Button {
+                id: undobutton
+                text: qsTr("Undo")
+                x: 178
+                y: 0
+                width: 87
+                height: 33
+            }
+            Button {
+                id: redobutton
+                text: qsTr("Redo")
+                x: 271
+                y: 0
+                width: 82
+                height: 33
+            }
+            Button {
+                id: clearbutton
+                text: qsTr("Clear")
+                x: 359
+                y: 0
+                width: 80
+                height: 33
+            }
         }
 
         Rectangle {
@@ -63,8 +98,14 @@ Rectangle {
                 cellHeight: 70
 
                 model: ListModel {
-                    ListElement { name: "Block Hazard 32"; imageSource: "assets/block_hazard_32.png" }
-                    ListElement { name: "Block Solid 32"; imageSource: "assets/block_solid_32.png" }
+                    ListElement {
+                        name: "Block Hazard 32"
+                        imageSource: "assets/block_hazard_32.png"
+                    }
+                    ListElement {
+                        name: "Block Solid 32"
+                        imageSource: "assets/block_solid_32.png"
+                    }
                     // Add remaining items as needed...
                 }
 
@@ -81,13 +122,11 @@ Rectangle {
                             source: imageSource
                             anchors.horizontalCenter: parent.horizontalCenter
                         }
-                        Text { text: name; font.bold: true; anchors.horizontalCenter: parent.horizontalCenter }
-                    }
-
-                    // MouseArea to select the sprite on click
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: backend.setSelectedSprite(imageSource)
+                        Text {
+                            text: name
+                            font.bold: true
+                            anchors.horizontalCenter: parent.horizontalCenter
+                        }
                     }
                 }
             }
@@ -114,12 +153,6 @@ Rectangle {
                     }
 
                     border.color: "lightgrey"
-
-                    // Update tile on click
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: backend.setTileSprite(index)
-                    }
                 }
             }
         }
@@ -132,8 +165,24 @@ Rectangle {
             height: 263
             color: "#ffffff"
 
-            Text { id: levelname; text: qsTr("Level Name"); font.pixelSize: 12; x: 0; y: 0; width: 408; height: 91 }
-            Text { id: levelmetadata; text: qsTr("Level size"); font.pixelSize: 12; x: 0; y: 97; width: 416; height: 166 }
+            Text {
+                id: levelname
+                text: qsTr("Level Name")
+                font.pixelSize: 12
+                x: 0
+                y: 0
+                width: 408
+                height: 91
+            }
+            Text {
+                id: levelmetadata
+                text: qsTr("Level size")
+                font.pixelSize: 12
+                x: 0
+                y: 97
+                width: 416
+                height: 166
+            }
         }
     }
 }

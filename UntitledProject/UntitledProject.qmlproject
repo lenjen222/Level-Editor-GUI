@@ -1,16 +1,16 @@
 import QmlProject
 
 Project {
-    mainFile: "GUIPrototypeContent/App.qml"
-    mainUiFile: "GUIPrototypeContent/Screen01.ui.qml"
+    mainFile: "UntitledProjectContent/App.qml"
+    mainUiFile: "UntitledProjectContent/Screen01.ui.qml"
 
     /* Include .qml, .js, and image files from current directory and subdirectories */
     QmlFiles {
-        directory: "GUIPrototype"
+        directory: "UntitledProject"
     }
 
     QmlFiles {
-        directory: "GUIPrototypeContent"
+        directory: "UntitledProjectContent"
     }
 
     QmlFiles {
@@ -18,15 +18,15 @@ Project {
     }
 
     JavaScriptFiles {
-        directory: "GUIPrototype"
+        directory: "UntitledProject"
     }
 
     JavaScriptFiles {
-        directory: "GUIPrototype"
+        directory: "UntitledProject"
     }
 
     ImageFiles {
-        directory: "GUIPrototypeContent"
+        directory: "UntitledProjectContent"
     }
 
     ImageFiles {
@@ -97,7 +97,7 @@ Project {
     importPaths: [ "." ]
 
     /* Required for deployment */
-    targetDirectory: "/opt/GUIPrototype"
+    targetDirectory: "/opt/UntitledProject"
 
     qdsVersion: "4.5"
 
@@ -109,10 +109,10 @@ Project {
     /* args: Specifies command line arguments for qsb tool to generate shaders.
        files: Specifies target files for qsb tool. If path is included, it must be relative to this file.
               Wildcard '*' can be used in the file name part of the path.
-              e.g. files: [ "GUIPrototypeContent/shaders/*.vert", "*.frag" ]  */
+              e.g. files: [ "UntitledProjectContent/shaders/*.vert", "*.frag" ]  */
     ShaderTool {
         args: "-s --glsl \"100 es,120,150\" --hlsl 50 --msl 12"
-        files: [ "GUIPrototypeContent/shaders/*" ]
+        files: [ "UntitledProjectContent/shaders/*" ]
     }
 
     multilanguageSupport: true
