@@ -6,14 +6,14 @@ Rectangle {
     id: rectangle
     x: 0
     y: 2
-    width: Constants.width
-    height: Constants.height
+    width: Constants.width || 1920
+    height: Constants.height || 1080
 
-    color: Constants.backgroundColor
+    color: Constants.backgroundColor || "white"
     property color selectedColor: "white"
     property int selectedTileIndex: -1
 
-    // need these for App.qml interface
+    // Button aliases for App.qml interface
     property alias savingbutton: savingbutton
     property alias loadingbutton: loadingbutton
     property alias clearbutton: clearbutton
@@ -21,9 +21,10 @@ Rectangle {
     // Level Name and Metadata Fields
     Text {
         id: label
-        font.family: Constants.font.family
+        font.family: Constants.font.family || "Arial"
         anchors.topMargin: 45
         anchors.horizontalCenter: parent.horizontalCenter
+        text: "Level Editor" // Optional default text
     }
 
     DropArea {
@@ -42,46 +43,11 @@ Rectangle {
             color: "#fff6f3"
 
             // Control Buttons
-            Button {
-                id: savingbutton
-                text: qsTr("Save")
-                x: 0
-                y: 0
-                width: 82
-                height: 33
-            }
-            Button {
-                id: loadingbutton
-                text: qsTr("Load")
-                x: 88
-                y: 0
-                width: 84
-                height: 33
-            }
-            Button {
-                id: undobutton
-                text: qsTr("Undo")
-                x: 178
-                y: 0
-                width: 87
-                height: 33
-            }
-            Button {
-                id: redobutton
-                text: qsTr("Redo")
-                x: 271
-                y: 0
-                width: 82
-                height: 33
-            }
-            Button {
-                id: clearbutton
-                text: qsTr("Clear")
-                x: 359
-                y: 0
-                width: 80
-                height: 33
-            }
+            Button { id: savingbutton; text: qsTr("Save"); x: 0; y: 0; width: 82; height: 33 }
+            Button { id: loadingbutton; text: qsTr("Load"); x: 88; y: 0; width: 84; height: 33 }
+            Button { id: undobutton; text: qsTr("Undo"); x: 178; y: 0; width: 87; height: 33 }
+            Button { id: redobutton; text: qsTr("Redo"); x: 271; y: 0; width: 82; height: 33 }
+            Button { id: clearbutton; text: qsTr("Clear"); x: 359; y: 0; width: 80; height: 33 }
         }
 
         Rectangle {
@@ -111,6 +77,47 @@ Rectangle {
                         name: "Block Solid 32"
                         imageSource: "assets/block_solid_32.png"
                     }
+                    ListElement {
+                        name: "Block Breakable 32"
+                        imageSource: "assets/block_breakable_32.png"
+                    }
+                    ListElement {
+                        name: "Indicator Room Height 32"
+                        imageSource: "assets/indicator_room_height_32.png"
+                    }
+                    ListElement {
+                        name: "Indicator Room Origin 32"
+                        imageSource: "assets/indicator_room_origin_32.png"
+                    }
+                    ListElement {
+                        name: "Indicator Room Origin Start 32"
+                        imageSource: "assets/indicator_room_origin_start_32.png"
+                    }
+                    ListElement {
+                        name: "Indicator Room Width 32"
+                        imageSource: "assets/indicator_room_width_32.png"
+                    }
+                    ListElement {
+                        name: "Indicator Spawn Enemy Left 32"
+                        imageSource: "assets/indicator_spawn_enemy_left_32.png"
+                    }
+                    ListElement {
+                        name: "Indicator Spawn Enemy Right 32"
+                        imageSource: "assets/indicator_spawn_enemy_right_32.png"
+                    }
+                    ListElement {
+                        name: "Indicator Spawn Player Left 32"
+                        imageSource: "assets/indicator_spawn_player_left_32.png"
+                    }
+                    ListElement {
+                        name: "Indicator Spawn Player Right 32"
+                        imageSource: "assets/indicator_spawn_player_right_32.png"
+                    }
+                    ListElement {
+                        name: "Platform Semisolid 32"
+                        imageSource: "assets/platform_semisolid_32.png"
+                    }
+
                 }
 
                 delegate: Rectangle {
@@ -120,17 +127,13 @@ Rectangle {
 
                     Column {
                         spacing: 5
-                        Image {
-                            width: 40
-                            height: 40
-                            source: imageSource
-                            anchors.horizontalCenter: parent.horizontalCenter
-                        }
-                        Text {
-                            text: name
-                            font.bold: true
-                            anchors.horizontalCenter: parent.horizontalCenter
-                        }
+                        Image { width: 40; height: 40; source: imageSource; anchors.horizontalCenter: parent.horizontalCenter }
+                        Text { text: name; font.bold: true; anchors.horizontalCenter: parent.horizontalCenter }
+                    }
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: backend.setSelectedSprite(imageSource)
                     }
                 }
             }
@@ -144,19 +147,20 @@ Rectangle {
                 height: 776
                 cellWidth: 32
                 cellHeight: 32
-                model: 100 * 100
+                model: 100 * 100 // Example grid size, 100x100 tiles
 
                 delegate: Rectangle {
                     width: 32
                     height: 32
                     property string imageSource: backend.selectedSprite
 
-                    Image {
-                        anchors.fill: parent
-                        source: imageSource
-                    }
-
+                    Image { anchors.fill: parent; source: imageSource }
                     border.color: "lightgrey"
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: backend.setTileSprite(index)
+                    }
                 }
             }
         }
@@ -169,24 +173,8 @@ Rectangle {
             height: 263
             color: "#ffffff"
 
-            Text {
-                id: levelname
-                text: qsTr("Level Name")
-                font.pixelSize: 12
-                x: 0
-                y: 0
-                width: 408
-                height: 91
-            }
-            Text {
-                id: levelmetadata
-                text: qsTr("Level size")
-                font.pixelSize: 12
-                x: 0
-                y: 97
-                width: 416
-                height: 166
-            }
+            Text { id: levelname; text: qsTr("Level Name"); font.pixelSize: 12; x: 0; y: 0; width: 408; height: 91 }
+            Text { id: levelmetadata; text: qsTr("Level size"); font.pixelSize: 12; x: 0; y: 97; width: 416; height: 166 }
         }
     }
 }
